@@ -22,6 +22,11 @@ print("Loading data...")
 diabetic_data = pd.read_csv("./data/diabetic_data.csv")
 ids_mapping = pd.read_csv("./data/IDS_mapping.csv")
 
+# Display the first 5 rows of the dataset and the IDs mapping
+print(diabetic_data.head())
+print(diabetic_data.info())
+print(ids_mapping.head())
+
 # Data Preprocessing
 # ------------------
 print("Preprocessing data...")
@@ -35,6 +40,8 @@ missing_columns = missing_values[missing_values > 0].index.tolist()
 diabetic_data.drop(
     columns=missing_columns, inplace=True
 )  # Drop columns with missing values
+
+# EDA: to be done here
 
 # Encode categorical variables
 categorical_cols = diabetic_data.select_dtypes(include=["object"]).columns
@@ -161,6 +168,8 @@ evaluate_model("AdaBoost", y_test, y_pred_ada)
 
 # Evaluate Deep Learning Model
 evaluate_model("Deep Learning Model", y_test, y_pred_deep)
+
+# Visualize Results: to be done here
 
 # Comparing All Models
 print("Comparing all models accuracy...")
