@@ -22,7 +22,6 @@ print("Loading data...")
 diabetic_data = pd.read_csv("./data/diabetic_data.csv")
 ids_mapping = pd.read_csv("./data/IDS_mapping.csv")
 
-# Display the first 5 rows of the dataset and the IDs mapping
 print(diabetic_data.head())
 print(diabetic_data.info())
 print(ids_mapping.head())
@@ -30,16 +29,13 @@ print(ids_mapping.head())
 # Data Preprocessing
 # ------------------
 print("Preprocessing data...")
-# Drop columns that won't help in prediction (e.g., unique patient IDs)
 diabetic_data.drop(columns=["encounter_id", "patient_nbr"], inplace=True)
 
 # Handle missing values
 diabetic_data.replace("?", np.nan, inplace=True)
 missing_values = diabetic_data.isnull().sum()
 missing_columns = missing_values[missing_values > 0].index.tolist()
-diabetic_data.drop(
-    columns=missing_columns, inplace=True
-)  # Drop columns with missing values
+diabetic_data.drop(columns=missing_columns, inplace=True)
 
 # EDA: to be done here
 
